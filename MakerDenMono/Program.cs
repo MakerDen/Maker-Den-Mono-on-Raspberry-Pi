@@ -11,6 +11,8 @@ namespace MakerDenMono {
     class MainClass : MakerBaseIoT {      
         public static void Main(string[] args) {
 
+            InitDrivers();
+
             StartNetworkServices("Mono", true);
 
             using (Sys sys = new Sys("dgrpi2"))

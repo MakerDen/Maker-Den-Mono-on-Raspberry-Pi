@@ -23,7 +23,7 @@ namespace MakerDenMono {
         const ConnectorPin sdaPin = ConnectorPin.P1Pin03;
         const ConnectorPin sclPin = ConnectorPin.P1Pin05;
 
-        MemoryGpioConnectionDriver driver;
+        static MemoryGpioConnectionDriver driver;
         protected static Mcp3002SpiConnection adcConnection;
         protected static I2cDriver i2cDriver;
         protected static IGpioConnectionDriver gpioDriver;
@@ -33,6 +33,9 @@ namespace MakerDenMono {
         static public LedDigital led;
 
         public MakerBaseIoT() {
+        }
+
+        static protected void InitDrivers() {
             driver = new MemoryGpioConnectionDriver();
             adcConnection = new Mcp3002SpiConnection(driver.Out(adcClock), driver.Out(adcCs), driver.In(adcMiso), driver.Out(adcMosi));
             i2cDriver = new I2cDriver(sdaPin.ToProcessor(), sclPin.ToProcessor());
