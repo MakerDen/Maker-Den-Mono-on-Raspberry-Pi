@@ -1,0 +1,26 @@
+﻿<Properties StartupItem="MakerDenMono/MakerDenMono.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Glovebox.RaspberryPi/Actuators/AdaFruit8x8Matrix.cs">
+    <Files>
+      <File FileName="Raspberry.IO.Components/Leds/AdaFruit8x8Matrix/Ht16K33.cs" Line="1" Column="1" />
+      <File FileName="MakerDenMono/Program.cs" Line="1" Column="1" />
+      <File FileName="Raspberry.IO.InterIntegratedCircuit/I2cDeviceConnection.cs" Line="1" Column="1" />
+      <File FileName="Raspberry.IO.InterIntegratedCircuit/I2cDriver.cs" Line="1" Column="1" />
+      <File FileName="Glovebox.RaspberryPi/Actuators/AdaFruit8x8Matrix.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/pi/Mono/MakerDenMono/MakerDenMono/Raspberry.IO.Components/Sensors/Sound/ElectretMicrophone.cs" line="33" column="1" />
+      <Breakpoint file="/home/pi/Mono/MakerDenMono/MakerDenMono/Glovebox.RaspberryPi/Sensors/SensorSound.cs" line="32" column="1" />
+      <Breakpoint file="/home/pi/Mono/MakerDenMono/MakerDenMono/Raspberry.IO.Components/Sensors/Temperature/Mcp9701A/Mcp9701AConnection.cs" line="57" column="1" />
+      <Breakpoint file="/home/pi/Mono/MakerDenMono/MakerDenMono/MakerDenMono/Program.cs" line="22" column="21" />
+      <Breakpoint file="/home/pi/Mono/MakerDenMono/MakerDenMono/Glovebox.RaspberryPi/Actuators/AdaFruit8x8Matrix.cs" line="63" column="1" />
+      <Breakpoint file="/home/pi/Mono/MakerDenMono/MakerDenMono/Glovebox.RaspberryPi/Actuators/AdaFruit8x8Matrix.cs" line="35" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Raspberry.IO.Components/Sensors/Temperature/Tmp36/Tmp36Connection.cs" line="54" offsetX="1098" offsetY="1378" expression="referenceVoltage" liveUpdate="False" />
+    <Watch file="Raspberry.IO.Components/Sensors/Temperature/Mcp9701a/Mcp9701AConnection.cs" line="55" offsetX="617" offsetY="1404" expression="ADCVal" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>

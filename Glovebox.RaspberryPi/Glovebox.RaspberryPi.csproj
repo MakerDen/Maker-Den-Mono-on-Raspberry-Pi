@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{252C730B-A037-41A5-9F62-D0B57A50C4E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Glovebox.RaspberryPi</RootNamespace>
+    <AssemblyName>Glovebox.RaspberryPi</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll</HintPath>
+    </Reference>
+    <Reference Include="UnitsNet">
+      <HintPath>..\packages\UnitsNet.3.10.0\lib\net35\UnitsNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actuators\AdaFruit8x8Matrix\Matrix8x8.cs" />
+    <Compile Include="Actuators\LedDigital.cs" />
+    <Compile Include="Actuators\PushButton.cs" />
+    <Compile Include="Actuators\Sys.cs" />
+    <Compile Include="Drivers\ElectretMicrophone.cs" />
+    <Compile Include="Drivers\Ht16K33.cs" />
+    <Compile Include="Drivers\Mcp3002\Mcp3002AnalogPinExtensionMethods.cs" />
+    <Compile Include="Drivers\Mcp3002\Mcp3002Channel.cs" />
+    <Compile Include="Drivers\Mcp3002\Mcp3002InputAnalogPin.cs" />
+    <Compile Include="Drivers\Mcp3002\Mcp3002SpiConnection.cs" />
+    <Compile Include="Drivers\Pcf8591T\PCF8591TI2cConnection.cs" />
+    <Compile Include="Drivers\ResistiveDivider.cs" />
+    <Compile Include="Drivers\Tmp36\Tmp36Connection.cs" />
+    <Compile Include="Drivers\VariableResistiveDividerConnection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sensors\Helpers\Convert.cs" />
+    <Compile Include="Sensors\Challenge.cs" />
+    <Compile Include="Drivers\Mcp9701a\Mcp9701AConnection.cs" />
+    <Compile Include="Sensors\SensorCPUTemp.cs" />
+    <Compile Include="Sensors\SensorError.cs" />
+    <Compile Include="Sensors\SensorLight.cs" />
+    <Compile Include="Sensors\SensorMemory.cs" />
+    <Compile Include="Sensors\SensorTemp.cs" />
+    <Compile Include="Sensors\SensorTmp36.cs" />
+    <Compile Include="Sensors\SensorSound.cs" />
+    <Compile Include="Actuators\AdaFruit8x8Matrix\AdaFruit8x8Matrix.cs" />
+    <Compile Include="Sensors\SensorMcp9701a.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Glovebox.IoT\Glovebox.IoT.csproj">
+      <Project>{02A94E75-998C-4FFD-A8ED-47370163CB0F}</Project>
+      <Name>Glovebox.IoT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Raspberry.IO.GeneralPurpose\Raspberry.IO.GeneralPurpose.csproj">
+      <Project>{281c71ed-c36d-408e-8baa-75c381dc17e7}</Project>
+      <Name>Raspberry.IO.GeneralPurpose</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Raspberry.IO.InterIntegratedCircuit\Raspberry.IO.InterIntegratedCircuit.csproj">
+      <Project>{63b8403e-bc56-43f9-a045-f61ecc3871f3}</Project>
+      <Name>Raspberry.IO.InterIntegratedCircuit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Raspberry.IO.Interop\Raspberry.IO.Interop.csproj">
+      <Project>{689cb6c4-3d23-45da-8e00-87c28aea32d0}</Project>
+      <Name>Raspberry.IO.Interop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Raspberry.IO.SerialPeripheralInterface\Raspberry.IO.SerialPeripheralInterface.csproj">
+      <Project>{326342e5-0411-40e8-9f2d-563d6b192568}</Project>
+      <Name>Raspberry.IO.SerialPeripheralInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Raspberry.IO\Raspberry.IO.csproj">
+      <Project>{ace64f17-87e5-43e7-97a0-bdde19059c61}</Project>
+      <Name>Raspberry.IO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

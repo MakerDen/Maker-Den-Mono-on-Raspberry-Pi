@@ -1,0 +1,1 @@
+xcopy %1*.* "\\dgrpi2\Mono\makerden" /s /e /y /d
