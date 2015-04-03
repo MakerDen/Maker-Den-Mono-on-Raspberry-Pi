@@ -22,7 +22,7 @@ The Internet of Things Solution Accelerator for the .NET Micro Framework provide
 ## Extensible/pluggable framework supporting
 
 1. Sensors
- * Physical: Light, Sound, Temperature
+ * Physical: Light, Sound, Temperature, CPU Temperature
  * Virtual: Memory Usage, Diagnostics
  * Sensor data serialised to a JSON schema
 
@@ -50,6 +50,7 @@ The IoT Dashboard allows you to visualise the data streamed to Azure.
 
 You can install the IoT Dashboard from [here](http://iotmakerdendashboard.azurewebsites.net/install/publish.htm).  Note, you will need to allow to run from unknown publisher.
 
+#Prototype Board Layout
 
 
 
@@ -66,6 +67,75 @@ This is a peliminary parts list with links to sites where I purchased the parts 
 6. [Rubber Feet - Small Stick On - Pk.4 (or a case)](http://www.jaycar.com.au/PRODUCTS/Enclosures-%26-Panel-Hardware/Panel-Hardware/Equipment-Feet/Rubber-Feet---Small-Stick-On---Pk-4/p/HP0815)
 7. [Adafruit Mini 0.8" 8x8 LED Matrix](http://littlebirdelectronics.com.au/products/adafruit-mini-0-8-8x8-led-matrix-w-i2c-backpack-yellow-green)
 7. 1 x 22k ohm resistor for Light Dependent Resistor
+
+
+
+## Programming Models
+
+### Declarative Event Driven Model
+
+    using Glovebox.MicroFramework.Sensors;
+    using Glovebox.Netduino.Actuators;
+    using Glovebox.Raspberry.IoT;
+    using Glovebox.Raspberry.IoT.Sensors;
+    using Glovebox.RaspberryPi;
+    using Glovebox.RaspberryPi.Actuators;
+    using Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix;
+    using Glovebox.RaspberryPi.Actuators.PushButton;
+    using Raspberry.IO.Components.Converters.Mcp3002;
+    using Raspberry.IO.GeneralPurpose;
+    using Raspberry.IO.InterIntegratedCircuit;
+    using System.Threading;
+
+    namespace MakerDenMono {
+        class MainClass : MakerBaseIoT {
+            // SPI Pins
+            const ConnectorPin adcMosi = ConnectorPin.P1Pin19;
+            const ConnectorPin adcMiso = ConnectorPin.P1Pin21;
+            const ConnectorPin adcClock = ConnectorPin.P1Pin23;
+            const ConnectorPin adcCs = ConnectorPin.P1Pin24;
+
+            // I2C Pins
+            const ConnectorPin sdaPin = ConnectorPin.P1Pin03;
+            const ConnectorPin sclPin = ConnectorPin.P1Pin05;
+
+            static MemoryGpioConnectionDriver driver = new MemoryGpioConnectionDriver();
+
+            public static void Main(string[] args) {
+
+                StartNetworkServices("Mono", true);
+
+                var adcConnection = new Mcp3002SpiConnection(
+                    driver.Out(adcClock), driver.Out(adcCs), driver.In(adcMiso), driver.Out(adcMosi));
+                I2cDriver i2cDriver = new I2cDriver(sdaPin.ToProcessor(), sclPin.ToProcessor());
+                IGpioConnectionDriver gpioDriver = GpioConnectionSettings.DefaultDriver;
+
+                using (Sys sys = new Sys("dgrpi2"))
+                using (led = new LedDigital(gpioDriver, "led01"))
+                using (AdaFruit8x8Matrix matrix = new AdaFruit8x8Matrix(i2cDriver))
+                using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))
+                using (SensorMemory mem = new SensorMemory(2000, "mem01"))
+                using (SensorLight light = new SensorLight(adcConnection, 1000, "light01"))
+                using (SensorSound sound = new SensorSound (adcConnection, 1000, "sound01")) 
+                using (SensorMcp9701a tempMcp9701a = new SensorMcp9701a(adcConnection, 15000, "temp02")) {
+
+                    mem.OnBeforeMeasurement += OnBeforeMeasure;
+                    mem.OnAfterMeasurement += OnMeasureCompleted;
+
+                    cpuTemp.OnBeforeMeasurement += OnBeforeMeasure;
+                    cpuTemp.OnAfterMeasurement += OnMeasureCompleted;
+
+                    light.OnBeforeMeasurement += OnBeforeMeasure;
+                    light.OnAfterMeasurement += OnMeasureCompleted;
+
+                    tempMcp9701a.OnBeforeMeasurement += OnBeforeMeasure;
+                    tempMcp9701a.OnAfterMeasurement += OnMeasureCompleted;
+
+                    Thread.Sleep(Timeout.Infinite);
+                }
+            }
+        }
+    }
 
 
 

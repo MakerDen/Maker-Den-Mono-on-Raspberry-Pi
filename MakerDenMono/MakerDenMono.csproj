@@ -74,6 +74,12 @@
       <Name>Raspberry.IO</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lab Code\Lab 1.txt" />
+  </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>call "$(SolutionDir)Scripts\CopyIfNewer.bat" $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
