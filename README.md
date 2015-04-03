@@ -69,6 +69,7 @@ All parts are generally available worldwide.  This is a peliminary parts list wi
 7. 1 x 22k ohm resistor for Light Dependent Resistor
 
 Optional
+
 1. [Electret Microphone Breakout Board](http://littlebirdelectronics.com.au/products/electret-microphone-breakout-board)
 
 
