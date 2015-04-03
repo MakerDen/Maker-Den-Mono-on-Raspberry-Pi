@@ -5,34 +5,13 @@ using Glovebox.Raspberry.IoT.Sensors;
 using Glovebox.RaspberryPi;
 using Glovebox.RaspberryPi.Actuators;
 using Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix;
-using Glovebox.RaspberryPi.Actuators.PushButton;
-using Raspberry.IO.Components.Converters.Mcp3002;
-using Raspberry.IO.GeneralPurpose;
-using Raspberry.IO.InterIntegratedCircuit;
 using System.Threading;
 
 namespace MakerDenMono {
-    class MainClass : MakerBaseIoT {
-        // SPI Pins
-        const ConnectorPin adcMosi = ConnectorPin.P1Pin19;
-        const ConnectorPin adcMiso = ConnectorPin.P1Pin21;
-        const ConnectorPin adcClock = ConnectorPin.P1Pin23;
-        const ConnectorPin adcCs = ConnectorPin.P1Pin24;
-
-        // I2C Pins
-        const ConnectorPin sdaPin = ConnectorPin.P1Pin03;
-        const ConnectorPin sclPin = ConnectorPin.P1Pin05;
-
-        static MemoryGpioConnectionDriver driver = new MemoryGpioConnectionDriver();
-
+    class MainClass : MakerBaseIoT {      
         public static void Main(string[] args) {
 
             StartNetworkServices("Mono", true);
-
-            var adcConnection = new Mcp3002SpiConnection(
-                driver.Out(adcClock), driver.Out(adcCs), driver.In(adcMiso), driver.Out(adcMosi));
-            I2cDriver i2cDriver = new I2cDriver(sdaPin.ToProcessor(), sclPin.ToProcessor());
-            IGpioConnectionDriver gpioDriver = GpioConnectionSettings.DefaultDriver;
 
             using (Sys sys = new Sys("dgrpi2"))
             using (led = new LedDigital(gpioDriver, "led01"))
