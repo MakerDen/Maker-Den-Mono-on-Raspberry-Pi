@@ -1,13 +1,12 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Glovebox.IoT;
+﻿using Glovebox.IoT;
 using Glovebox.IoT.Base;
 using Glovebox.Netduino.Actuators;
-using System.Threading;
-using Raspberry.IO.GeneralPurpose;
 using Raspberry.IO.Components.Converters.Mcp3002;
+using Raspberry.IO.GeneralPurpose;
 using Raspberry.IO.InterIntegratedCircuit;
-
+using System;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 
 namespace MakerDenMono {
@@ -31,9 +30,6 @@ namespace MakerDenMono {
 
         static public ServiceManager sm;
         static public LedDigital led;
-
-        public MakerBaseIoT() {
-        }
 
         static protected void InitDrivers() {
             driver = new MemoryGpioConnectionDriver();

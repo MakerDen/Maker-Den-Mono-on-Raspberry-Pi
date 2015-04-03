@@ -55,7 +55,7 @@ You can install the IoT Dashboard from [here](http://iotmakerdendashboard.azurew
 
 
 # Parts List
-This is a peliminary parts list with links to sites where I purchased the parts for the Maker Den on Mono (.NET) on Raspberry Pi 2 (also supports Raspberry Pi B+).  The links are for your reference only and in no way are these sites affiliated with Microsoft.
+All parts are generally available worldwide.  This is a peliminary parts list with links to sites where I purchased the parts for the Maker Den on Mono (.NET) on Raspberry Pi 2 (also supports Raspberry Pi B+).  The links are for your reference only and in no way are these sites affiliated with Microsoft.
 
 
 1. [Raspberry Pi 2](http://www.raspberrypi.org/)
@@ -67,6 +67,9 @@ This is a peliminary parts list with links to sites where I purchased the parts 
 6. [Rubber Feet - Small Stick On - Pk.4 (or a case)](http://www.jaycar.com.au/PRODUCTS/Enclosures-%26-Panel-Hardware/Panel-Hardware/Equipment-Feet/Rubber-Feet---Small-Stick-On---Pk-4/p/HP0815)
 7. [Adafruit Mini 0.8" 8x8 LED Matrix](http://littlebirdelectronics.com.au/products/adafruit-mini-0-8-8x8-led-matrix-w-i2c-backpack-yellow-green)
 7. 1 x 22k ohm resistor for Light Dependent Resistor
+
+Optional
+1. [Electret Microphone Breakout Board](http://littlebirdelectronics.com.au/products/electret-microphone-breakout-board)
 
 
 
