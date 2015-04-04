@@ -1,10 +1,10 @@
-﻿using Glovebox.MicroFramework.Sensors;
+﻿using Glovebox.Adafruit.Mini8x8Matrix;
+using Glovebox.MicroFramework.Sensors;
 using Glovebox.Netduino.Actuators;
 using Glovebox.Raspberry.IoT;
 using Glovebox.Raspberry.IoT.Sensors;
 using Glovebox.RaspberryPi;
 using Glovebox.RaspberryPi.Actuators;
-using Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix;
 using System.Threading;
 
 namespace MakerDenMono {

@@ -41,13 +41,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actuators\AdaFruit8x8Matrix\Adafruit8x8Matrix.cs" />
     <Compile Include="Actuators\LedDigital.cs" />
     <Compile Include="Actuators\PushButton.cs" />
     <Compile Include="Actuators\Sys.cs" />
     <Compile Include="Drivers\ElectretMicrophone.cs" />
-    <Compile Include="Drivers\Ht16K33.cs" />
-    <Compile Include="Drivers\IHt16K33.cs" />
     <Compile Include="Drivers\Mcp3002\Mcp3002AnalogPinExtensionMethods.cs" />
     <Compile Include="Drivers\Mcp3002\Mcp3002Channel.cs" />
     <Compile Include="Drivers\Mcp3002\Mcp3002InputAnalogPin.cs" />
@@ -67,7 +64,6 @@
     <Compile Include="Sensors\SensorTemp.cs" />
     <Compile Include="Sensors\SensorTmp36.cs" />
     <Compile Include="Sensors\SensorSound.cs" />
-    <Compile Include="Actuators\AdaFruit8x8Matrix\AdaFruitMatrixRun.cs" />
     <Compile Include="Sensors\SensorMcp9701a.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

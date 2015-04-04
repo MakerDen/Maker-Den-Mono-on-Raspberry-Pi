@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Glovebox.RaspberryPi.Drivers {
+namespace Glovebox.Adafruit.Mini8x8Matrix.Driver {
     public interface IHt16K33 {
 
         void FrameUpdate(byte[] frame);

@@ -1,9 +1,9 @@
-﻿using Glovebox.RaspberryPi.Drivers;
+﻿using Glovebox.Adafruit.Mini8x8Matrix.Driver;
 using Raspberry.IO.InterIntegratedCircuit;
 using System;
 using System.Threading;
 
-namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
+namespace Glovebox.Adafruit.Mini8x8Matrix {
     public class AdaFruitMatrixRun : Adafruit8x8Matrix, IDisposable {
         #region IDisposable implementation
 

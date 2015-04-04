@@ -1,10 +1,10 @@
-﻿using Glovebox.RaspberryPi.Drivers;
-using Raspberry.IO.InterIntegratedCircuit;
+﻿using Glovebox.Adafruit.Mini8x8Matrix.Driver;
+using Glovebox.IoT.Base;
 using System;
 using System.Threading;
 
-namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
-    public class Adafruit8x8Matrix {
+namespace Glovebox.Adafruit.Mini8x8Matrix {
+    public class Adafruit8x8Matrix : ActuatorBase {
 
         const uint bufferSize = 17;
         private byte[] Frame = new byte[bufferSize];
@@ -137,7 +137,8 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
 
         #endregion
 
-        public Adafruit8x8Matrix(Ht16K33I2cConnection i2Cdriver, ushort panels = 1) {
+        public Adafruit8x8Matrix(Ht16K33I2cConnection i2Cdriver, ushort panels = 1)
+            : base("mini8x8matrix", "ledgrid01") {
             this.Panels = panels;
             this.i2Cdriver = i2Cdriver;
         }
@@ -448,6 +449,15 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
             //  }
         }
 
+        #region Actuator Base Methods
+        protected override void ActuatorCleanup() {
+        }
+
+        public override void Action(IoT.Command.IotAction action) {
+        }
+
+        #endregion
+
 
         #region Ht16K33 I2C Control Methods
 
@@ -464,6 +474,8 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
         }
 
         #endregion
+
+
 
     }
 }

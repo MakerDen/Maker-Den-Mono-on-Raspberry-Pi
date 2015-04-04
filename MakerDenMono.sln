@@ -33,9 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raspberry.IO.Interop", "Ras
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Assets", "Project Assets", "{E8119FD6-D26F-4207-BABD-4639C3D5F765}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Users\dglover\Desktop\Internet of Things Maker Den.jpg = ..\..\..\..\Users\dglover\Desktop\Internet of Things Maker Den.jpg
 		..\..\..\..\Users\dglover\Source\Repos\IoT-Maker-Den-NETMF\MakerDen\Lab Code\IoTDashboard.JPG = ..\..\..\..\Users\dglover\Source\Repos\IoT-Maker-Den-NETMF\MakerDen\Lab Code\IoTDashboard.JPG
-		..\..\..\..\Users\dglover\Source\Repos\IoT-Maker-Den-NETMF\MakerDen\Lab Code\Maker Den IoT Framework.jpg = ..\..\..\..\Users\dglover\Source\Repos\IoT-Maker-Den-NETMF\MakerDen\Lab Code\Maker Den IoT Framework.jpg
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glovebox.Adafruit.Mini8x8Matrix", "Glovebox.Adafruit8x8Matrix\Glovebox.Adafruit.Mini8x8Matrix.csproj", "{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -132,6 +134,16 @@ Global
 		{689CB6C4-3D23-45DA-8E00-87C28AEA32D0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{689CB6C4-3D23-45DA-8E00-87C28AEA32D0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{689CB6C4-3D23-45DA-8E00-87C28AEA32D0}.Release|x86.ActiveCfg = Release|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B32F7E0E-B4DF-4641-9608-CE00FF3DBF1E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

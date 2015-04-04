@@ -6,7 +6,7 @@ using Raspberry.IO.InterIntegratedCircuit;
 
 #endregion
 
-namespace Glovebox.RaspberryPi.Drivers
+namespace Glovebox.Adafruit.Mini8x8Matrix.Driver
 {
 	/// <summary>
 	/// Represents a I2C connection to a PCF8574 I/O Expander.
