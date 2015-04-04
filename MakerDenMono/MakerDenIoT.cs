@@ -31,7 +31,7 @@ namespace MakerDenMono {
         static public ServiceManager sm;
         static public LedDigital led;
 
-        static protected void InitDrivers() {
+        static protected void InitializeDrivers() {
             driver = new MemoryGpioConnectionDriver();
             adcConnection = new Mcp3002SpiConnection(driver.Out(adcClock), driver.Out(adcCs), driver.In(adcMiso), driver.Out(adcMosi));
             i2cDriver = new I2cDriver(sdaPin.ToProcessor(), sclPin.ToProcessor());

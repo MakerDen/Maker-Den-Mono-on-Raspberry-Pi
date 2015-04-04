@@ -8,10 +8,10 @@ using Glovebox.RaspberryPi.Actuators;
 using System.Threading;
 
 namespace MakerDenMono {
-    class MainClass : MakerBaseIoT {      
+    class MainClass : MakerBaseIoT {
         public static void Main(string[] args) {
 
-            InitDrivers();
+            InitializeDrivers();
 
             StartNetworkServices("Mono", true);
 

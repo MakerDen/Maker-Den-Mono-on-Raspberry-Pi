@@ -45,7 +45,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Glovebox.Adafruit8x8Matrix\Glovebox.Adafruit.Mini8x8Matrix.csproj">
+    <ProjectReference Include="..\Glovebox.Adafruit.Mini8x8Matrix\Glovebox.Adafruit.Mini8x8Matrix.csproj">
       <Project>{b32f7e0e-b4df-4641-9608-ce00ff3dbf1e}</Project>
       <Name>Glovebox.Adafruit.Mini8x8Matrix</Name>
     </ProjectReference>
