@@ -47,6 +47,7 @@
     <Compile Include="Actuators\Sys.cs" />
     <Compile Include="Drivers\ElectretMicrophone.cs" />
     <Compile Include="Drivers\Ht16K33.cs" />
+    <Compile Include="Drivers\IHt16K33.cs" />
     <Compile Include="Drivers\Mcp3002\Mcp3002AnalogPinExtensionMethods.cs" />
     <Compile Include="Drivers\Mcp3002\Mcp3002Channel.cs" />
     <Compile Include="Drivers\Mcp3002\Mcp3002InputAnalogPin.cs" />

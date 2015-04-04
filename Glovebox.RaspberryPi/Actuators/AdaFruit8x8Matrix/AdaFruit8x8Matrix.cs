@@ -8,7 +8,7 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
         #region IDisposable implementation
 
         void IDisposable.Dispose() {
-            throw new NotImplementedException();
+ 
         }
 
         #endregion
@@ -24,7 +24,7 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
         private void RunSequence() {
 
             FrameSetBrightness(4);
-            FrameSetBlinkRate(Ht16K33I2cConnection.BlinkRate.Off);
+            FrameSetBlinkRate(BlinkRate.Off);
 
             while (true) {
 

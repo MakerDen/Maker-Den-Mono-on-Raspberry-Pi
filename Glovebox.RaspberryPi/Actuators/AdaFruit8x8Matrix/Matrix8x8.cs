@@ -142,8 +142,6 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
             this.i2Cdriver = i2Cdriver;
         }
 
-
-
         #region Scroll string primatives
 
         public void ScrollStringInFromRight(string characters, int milliseconds) {
@@ -314,10 +312,6 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
             DrawBitmap(letter, panel);
         }
 
-        public void FrameDraw() {
-            FrameUpdate(Frame);
-        }
-
         public void FrameClear() {
             for (int i = 0; i < Frame.Length; i++) {
                 Frame[i] = 0;
@@ -454,20 +448,22 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
             //  }
         }
 
+
         #region Ht16K33 I2C Control Methods
 
-        public void FrameUpdate(byte[] frame) {
-            i2Cdriver.FrameUpdate(frame);
+        public void FrameDraw() {
+            i2Cdriver.Write(Frame);
         }
 
-        protected void FrameSetBlinkRate(BlinkRate br) {
+        public void FrameSetBlinkRate(BlinkRate br) {
             i2Cdriver.FrameSetBlinkRate((byte)br);
         }
 
-        protected void FrameSetBrightness(byte level) {
+        public void FrameSetBrightness(byte level) {
             i2Cdriver.FrameSetBrightness(level);
         }
 
         #endregion
+
     }
 }

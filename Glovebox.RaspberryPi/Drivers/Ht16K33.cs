@@ -33,25 +33,25 @@ namespace Glovebox.RaspberryPi.Drivers
         #region Ht16K33 I2C Control Methods
 
 
-        public void FrameUpdate(byte[] frame) {
+        public void Write(byte[] frame) {
 			connection.Write(frame);
 		}
 
         public void FrameSetBlinkRate(byte br) {
-            FrameUpdate(new byte[] { (byte)(0x80 | 0x01 | (byte)br), 0x00 });
+            Write(new byte[] { (byte)(0x80 | 0x01 | (byte)br), 0x00 });
 		}
 
         public void FrameSetBrightness(byte level) {
 			if (level > 15) { level = 15; }
-            FrameUpdate(new byte[] { (byte)(0xE0 | level), 0x00 });
+            Write(new byte[] { (byte)(0xE0 | level), 0x00 });
 		}
 
         private void FrameInit() {
-            FrameUpdate(new byte[] { 0x21, 0x00 });
-            FrameUpdate(new byte[] { 0xA0, 0x00 });
+            Write(new byte[] { 0x21, 0x00 });
+            Write(new byte[] { 0xA0, 0x00 });
 		}
 
 		#endregion
 
-	}
+    }
 }
