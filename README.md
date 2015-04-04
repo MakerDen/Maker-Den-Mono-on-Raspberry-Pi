@@ -15,7 +15,7 @@ More to come, but for now refer to this excellent article of setting up Mono on 
 The Internet of Things Solution Accelerator for the .NET Micro Framework provides a pluggable foundation to support sensors, actuators, data serialisation, communications, and command and control. 
 
 
-![Alt text](https://github.com/MakerDen/IoT-Maker-Den-NETMF/blob/master/MakerDen/Lab%20Code/Maker%20Den%20IoT%20Framework.jpg)
+![Alt text](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Internet%20of%20Things%20Maker%20Den.jpg)
 
 
 
@@ -32,7 +32,7 @@ The Internet of Things Solution Accelerator for the .NET Micro Framework provide
      - Low and high level pixel frame transformation primitives 
      - alphanumeric character and symbol drawing and scrolling capability 
 3. Command and Control
- * Control relays, start NeoPixels etc via the communications layer
+ * Control relays, send messages to a Adafruit Mini 8x8 Matrix etc via the communications layer
 
 4. Communications
  * Pluggable – currently implemented on MQTT ([Mosquitto](http://mosquitto.org) MQTT Server running on Azure)
@@ -46,7 +46,7 @@ The Internet of Things Solution Accelerator for the .NET Micro Framework provide
 ## IoT Dashboard
 The IoT Dashboard allows you to visualise the data streamed to Azure. 
 
-![IoT Dashboard](https://github.com/MakerDen/IoT-Maker-Den-NETMF/blob/master/MakerDen/Lab%20Code/IoTDashboard.JPG)
+![IoT Dashboard](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/IoTDashboard.JPG)
 
 You can install the IoT Dashboard from [here](http://iotmakerdendashboard.azurewebsites.net/install/publish.htm).  Note, you will need to allow to run from unknown publisher.
 
