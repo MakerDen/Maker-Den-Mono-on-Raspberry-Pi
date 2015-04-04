@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Glovebox.RaspberryPi.Drivers;
 using Raspberry.IO.InterIntegratedCircuit;
+using System;
 using System.Threading;
 
 namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
@@ -14,22 +15,21 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
 
         Thread matrix;
 
-        public AdaFruit8x8Matrix(I2cDriver i2cDriver)
-            : base(i2cDriver.Connect(0x70)) {
+        public AdaFruit8x8Matrix(I2cDeviceConnection connection)
+            : base(new Ht16K33I2cConnection(connection)) {
             matrix = new Thread(new ThreadStart(this.RunSequence));
             matrix.Start();
         }
 
         private void RunSequence() {
 
-            FrameSetBrightness(6);
-            FrameSetBlinkRate(BlinkRate.Off);
-
+            FrameSetBrightness(4);
+            FrameSetBlinkRate(Ht16K33I2cConnection.BlinkRate.Off);
 
             while (true) {
 
-                //   DrawString("hello world", 100);
-
+                ScrollStringInFromRight("Happy Birthday", 100);
+                ScrollSymbolInFromRight(new Symbols[] { Symbols.Heart, Symbols.Heart }, 100);
 
                 for (int i = 0; i < fontSimple.Length; i++) {
                     DrawBitmap(fontSimple[i]);
@@ -49,7 +49,7 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
 
                 for (int i = 0; i < 4; i++) {
                     for (ushort c = 0; c < Columns; c++) {
-                        ColumnRollRight(c);
+                        FrameRollRight();
                         FrameDraw();
                         Thread.Sleep(50);
                     }
@@ -66,7 +66,7 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
                 for (int i = 0; i < 4; i++) {
 
                     for (ushort c = 0; c < Columns; c++) {
-                        ColumnRollLeft(c);
+                        FrameRollLeft();
                         FrameDraw();
                         Thread.Sleep(50);
                     }
@@ -80,16 +80,32 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
                     }
                 }
 
+                for (int j = 0; j < 4; j++) {
+                    for (int i = 0; i < Rows; i++) {
+                        ColumnRollLeft(0);
+                        ColumnRollRight(1);
+                        ColumnRollLeft(2);
+                        ColumnRollRight(3);
+                        ColumnRollLeft(4);
+                        ColumnRollRight(5);
+                        ColumnRollLeft(6);
+                        ColumnRollRight(7);
+                        FrameDraw();
+                        Thread.Sleep(100);
+                    }
+                    Thread.Sleep(500);
+                }
+
                 for (int j = 0; j < 5; j++) {
                     for (int i = 0; i < 64; i++) {
                         FrameSet(i, true);
                         FrameSet((63 - i), true);
                         FrameDraw();
-                        Thread.Sleep(10);
+                        Thread.Sleep(15);
                         FrameSet(i, false);
                         FrameSet((63 - i), false);
                         FrameDraw();
-                        Thread.Sleep(10);
+                        Thread.Sleep(15);
                     }
                 }
             }

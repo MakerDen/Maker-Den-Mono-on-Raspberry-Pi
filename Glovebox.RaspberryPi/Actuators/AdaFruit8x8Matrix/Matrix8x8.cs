@@ -4,13 +4,24 @@ using System;
 using System.Threading;
 
 namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
-    public class Matrix8x8 : Ht16K33I2cConnection {
+    public class Matrix8x8 {
+
         const uint bufferSize = 17;
         private byte[] Frame = new byte[bufferSize];
+
         protected const ushort Rows = 8;
         protected const ushort Columns = 8;
         public readonly ushort Panels = 1;
         protected ushort Length = Rows * Columns;
+
+        Ht16K33I2cConnection i2Cdriver;
+
+        public enum BlinkRate : byte {
+            Off = 0x00,
+            Fast = 0x02, //2hz
+            Medium = 0x04, //1hz
+            Slow = 0x06, //0.5 hz
+        }
 
         #region Font
         public ulong[] fontSimple = new ulong[] { 
@@ -112,10 +123,10 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
 
         #region Symbols
         public enum Symbols : ulong {
-            Heart = 0x00081C3E7F7F3600, // heart   
-            HappyFace = 0x3C4299A581A5423C, //smilie face
+            Heart = 0x00081C3E7F7F3600,
+            HappyFace = 0x3C4299A581A5423C,
             SadFace = 0x3C42A59981A5423C,
-            Block = 0xffffffffffffffff, // block
+            Block = 0xffffffffffffffff,
             HourGlass = 0xFF7E3C18183C7EFF,
             UpArrow = 0x18181818FF7E3C18,
             DownArrow = 0x183C7EFF18181818,
@@ -126,25 +137,169 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
 
         #endregion
 
-        public Matrix8x8(I2cDeviceConnection connection, ushort panels = 1)
-            : base(connection) {
+        public Matrix8x8(Ht16K33I2cConnection i2Cdriver, ushort panels = 1) {
             this.Panels = panels;
+            this.i2Cdriver = i2Cdriver;
         }
 
 
 
-        public void DrawString(string characters, int pause, ushort panel = 0) {
+        #region Scroll string primatives
+
+        public void ScrollStringInFromRight(string characters, int milliseconds) {
+            // loop through each chacter
+            for (int ch = 0; ch < characters.Length; ch++) {
+
+                char charactor = characters.Substring(ch, 1)[0];
+                if (charactor >= ' ' && charactor <= 'z') {
+                    ScrollBitmapInFromRight(fontSimple[charactor - 32], milliseconds);
+                }
+            }
+        }
+
+        public void ScrollStringInFromLeft(string characters, int milliseconds) {
+
+            // loop through each chacter
+            for (int ch = characters.Length - 1; ch >= 0; ch--) {
+
+                char charactor = characters.Substring(ch, 1)[0];
+                if (charactor >= ' ' && charactor <= 'z') {
+                    ScrollBitmapInFromLeft(fontSimple[charactor - 32], milliseconds);
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region Scroll Character primatives
+        public void ScrollCharacterFromRight(char charactor, int milliseconds) {
+            if (charactor >= ' ' && charactor <= 'z') {
+                ScrollBitmapInFromRight(fontSimple[charactor - 32], milliseconds);
+            }
+        }
+
+        public void ScrollCharacterFromLeft(char charactor, int milliseconds) {
+            if (charactor >= ' ' && charactor <= 'z') {
+                ScrollBitmapInFromLeft(fontSimple[charactor - 32], milliseconds);
+            }
+        }
+
+        #endregion
+
+        #region Scroll symbol primatives
+
+        public void ScrollSymbolInFromRight(Symbols[] sym, int milliseconds) {
+            foreach (var s in sym) {
+                ScrollBitmapInFromRight((ulong)s, milliseconds);
+            }
+        }
+
+        public void ScrollSymbolInFromLeft(Symbols[] sym, int milliseconds) {
+            foreach (var s in sym) {
+                ScrollBitmapInFromLeft((ulong)s, milliseconds);
+            }
+        }
+
+        public void ScrollSymbolInFromRight(Symbols sym, int milliseconds) {
+            ScrollBitmapInFromRight((ulong)sym, milliseconds);
+        }
+
+        public void ScrollSymbolInFromLeft(Symbols sym, int milliseconds) {
+            ScrollBitmapInFromLeft((ulong)sym, milliseconds);
+        }
+
+        #endregion
+
+        #region Scroll Bitmaps left and right
+
+        public void ScrollBitmapInFromRight(ulong bitmap, int milliseconds) {
+            ushort pos = 0;
+            ulong mask;
+            bool pixelFound = false;
+            int panelOffset = (Panels - 1) * Columns * Rows;
+
+            // space character ?
+            if (bitmap == 0) {
+                ShiftFrameLeft();
+                FrameDraw();
+                //      Thread.Sleep(milliseconds);
+                return;
+            }
+
+            // fetch vertical slice of character font
+            for (int col = 0; col < Columns; col++) {
+                pixelFound = false;
+
+                for (int row = 0; row < Rows; row++) {
+                    mask = (ulong)1 << row * Columns + col;
+                    pos = (ushort)(row * Columns + (Columns - 1) + panelOffset);
+
+                    if ((bitmap & mask) != 0) {
+                        FrameSet(pos, true);
+                        pixelFound = true;
+                    }
+                }
+                if (pixelFound) {
+                    FrameDraw();
+                    ShiftFrameLeft();
+                    Thread.Sleep(milliseconds);
+                }
+            }
+            //post bitmap space
+            ShiftFrameLeft();
+        }
+
+        public void ScrollBitmapInFromLeft(ulong bitmap, int milliseconds) {
+            ushort pos = 0;
+            ulong mask;
+            bool pixelFound = false;
+
+
+            // space character ?
+            if (bitmap == 0) {
+                ShiftFrameRight();
+                FrameDraw();
+                //     Thread.Sleep(milliseconds);
+                return;
+            }
+
+            // fetch vertical slice of character font
+            for (int col = Columns - 1; col >= 0; col--) {
+                pixelFound = false;
+
+                for (int row = 0; row < Rows; row++) {
+                    mask = (ulong)1 << row * Columns + col;
+                    pos = (ushort)(row * Columns);
+
+                    if ((bitmap & mask) != 0) {
+                        FrameSet(pos, true);
+                        pixelFound = true;
+                    }
+                }
+                if (pixelFound) {
+                    FrameDraw();
+                    ShiftFrameRight();
+                    Thread.Sleep(milliseconds);
+                }
+            }
+            //blank character space
+            ShiftFrameRight();
+        }
+
+        #endregion
+
+        public void DrawString(string characters, int milliseconds, ushort panel = 0) {
             char c;
             for (int i = 0; i < characters.Length; i++) {
                 c = characters.Substring(i, 1)[0];
                 if (c >= ' ' && c <= 'z') {
                     DrawLetter(c, panel);
                     FrameDraw();
-                    Thread.Sleep(pause);
+                    Thread.Sleep(milliseconds);
                 }
             }
         }
-
 
         public void DrawLetter(char character, ushort panel = 0) {
             ulong letter = 0;
@@ -159,9 +314,8 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
             DrawBitmap(letter, panel);
         }
 
-
         public void FrameDraw() {
-            base.FrameUpdate(Frame);
+            FrameUpdate(Frame);
         }
 
         public void FrameClear() {
@@ -195,7 +349,6 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
                 Frame[b] = (byte)(255 - Frame[b]);
             }
         }
-
 
         // Fix bit order problem with the ht16K33 controller or Adafruit 8x8 matrix
         // Bits offset by 1, roll bits forward by 1, replace 8th bit with the 1st 
@@ -240,9 +393,11 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
         /// </summary>
         /// <param name="rowIndex"></param>
         public void ColumnShiftLeft(ushort rowIndex) {
-            for (int b = 1; b < bufferSize; b += 2) {
-                Frame[b] = (byte)((Frame[b] >> 1 | Frame[b] << 7) & 0xbf);
-            }
+            //      Console.WriteLine(rowIndex.ToString());
+            int b = rowIndex * 2 + 1;
+            //       for (int b = 1; b < bufferSize; b += 2) {
+            Frame[b] = (byte)((Frame[b] >> 1 | Frame[b] << 7) & 0xbf);
+            // }
         }
 
         /// <summary>
@@ -250,9 +405,11 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
         /// </summary>
         /// <param name="rowIndex"></param>
         public void ColumnShiftRight(ushort rowIndex) {
-            for (int b = 1; b < bufferSize; b += 2) {
-                Frame[b] = (byte)((Frame[b] << 1 | Frame[b] >> 7) & 0x7f);
-            }
+            int b = rowIndex * 2 + 1;
+
+            //    for (int b = 1; b < bufferSize; b += 2) {
+            Frame[b] = (byte)((Frame[b] << 1 | Frame[b] >> 7) & 0x7f);
+            //  }
         }
 
         public void RowRollUp() {
@@ -264,23 +421,53 @@ namespace Glovebox.RaspberryPi.Actuators.AdaFruit8x8Matrix {
         }
 
         public void RowRollDown() {
-            byte temp = Frame[Rows * 2 - 1];           
+            byte temp = Frame[Rows * 2 - 1];
             for (int b = Rows; b > 1; b--) {
-               Frame[(b * 2 - 1)] = Frame[((b-1) * 2) - 1];
+                Frame[(b * 2 - 1)] = Frame[((b - 1) * 2) - 1];
             }
             Frame[1] = temp;
         }
 
-        public void ColumnRollRight(ushort rowIndex) {
-            for (int b = 1; b < bufferSize; b += 2) {
-                Frame[b] = (byte)(Frame[b] << 1 | Frame[b] >> 7);
+        public void FrameRollRight() {
+            for (ushort row = 0; row < Rows; row++) {
+                ColumnRollRight(row);
             }
         }
 
-        public void ColumnRollLeft(ushort rowIndex) {
-            for (int b = 1; b < bufferSize; b += 2) {
-                Frame[b] = (byte)(Frame[b] >> 1 | Frame[b] << 7);
+        public void FrameRollLeft() {
+            for (ushort row = 0; row < Rows; row++) {
+                ColumnRollLeft(row);
             }
         }
+
+        public void ColumnRollRight(ushort rowIndex) {
+            int b = rowIndex * 2 + 1;
+            //    for (int b = 1; b < bufferSize; b += 2) {
+            Frame[b] = (byte)(Frame[b] << 1 | Frame[b] >> 7);
+            //     }
+        }
+
+        public void ColumnRollLeft(ushort rowIndex) {
+            int b = rowIndex * 2 + 1;
+            //  for (int b = 1; b < bufferSize; b += 2) {
+            Frame[b] = (byte)(Frame[b] >> 1 | Frame[b] << 7);
+            //  }
+        }
+
+        #region Ht16K33 I2C Control Methods
+
+        public void FrameUpdate(byte[] frame) {
+            i2Cdriver.FrameUpdate(frame);
+        }
+
+        protected void FrameSetBlinkRate(BlinkRate br) {
+            i2Cdriver.FrameSetBlinkRate((byte)br);
+        }
+
+        protected void FrameSetBrightness(byte level) {
+            i2Cdriver.FrameSetBrightness(level);
+        }
+
+        #endregion
     }
 }

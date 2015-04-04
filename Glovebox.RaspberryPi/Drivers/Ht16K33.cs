@@ -20,15 +20,6 @@ namespace Glovebox.RaspberryPi.Drivers
 
 		#endregion
 
-        public enum BlinkRate: byte {
-			Off    = 0x00,  
-			Fast    = 0x02, //2hz
-			Medium  = 0x04, //1hz
-			Slow    = 0x06, //0.5 hz
-		}
-
-		#region Instance Management
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Pcf8574I2cConnection"/> class.
 		/// </summary>
@@ -39,20 +30,18 @@ namespace Glovebox.RaspberryPi.Drivers
             FrameInit();
 		}
 
-		#endregion
-
-		#region Methods
+        #region Ht16K33 I2C Control Methods
 
 
-		protected void FrameUpdate(byte[] frame) {
+        public void FrameUpdate(byte[] frame) {
 			connection.Write(frame);
 		}
 
-        protected void FrameSetBlinkRate(BlinkRate br) {
+        public void FrameSetBlinkRate(byte br) {
             FrameUpdate(new byte[] { (byte)(0x80 | 0x01 | (byte)br), 0x00 });
 		}
 
-        protected void FrameSetBrightness(byte level) {
+        public void FrameSetBrightness(byte level) {
 			if (level > 15) { level = 15; }
             FrameUpdate(new byte[] { (byte)(0xE0 | level), 0x00 });
 		}
