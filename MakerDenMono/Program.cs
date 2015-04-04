@@ -17,7 +17,7 @@ namespace MakerDenMono {
 
             using (Sys sys = new Sys("dgrpi2"))
             using (led = new LedDigital(gpioDriver, "led01"))
-            using (AdaFruit8x8Matrix matrix = new AdaFruit8x8Matrix(i2cDriver.Connect(0x70)))
+            using (AdaFruitMatrixRun matrix = new AdaFruitMatrixRun(i2cDriver.Connect(0x70)))
             using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))
             using (SensorMemory mem = new SensorMemory(2000, "mem01"))
             using (SensorLight light = new SensorLight(adcConnection, 1000, "light01"))
