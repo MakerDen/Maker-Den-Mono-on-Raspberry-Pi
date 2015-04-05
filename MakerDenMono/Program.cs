@@ -17,14 +17,13 @@ namespace MakerDenMono {
             using (led = new LedDigital(gpioDriver, "led01"))
             using (AdaFruitMatrixRun matrix = new AdaFruitMatrixRun(i2cDriver.Connect(0x70)))
             using (SensorLight light = new SensorLight(spiConnection, 1000, "light01"))
-            using (SensorSound sound = new SensorSound(spiConnection, 1000, "sound01"))
             using (SensorMcp9701a tempMcp9701a = new SensorMcp9701a(spiConnection, 15000, "temp02")) {
-
-                mem.OnBeforeMeasurement += OnBeforeMeasure;
-                mem.OnAfterMeasurement += OnMeasureCompleted;
 
                 cpuTemp.OnBeforeMeasurement += OnBeforeMeasure;
                 cpuTemp.OnAfterMeasurement += OnMeasureCompleted;
+
+                mem.OnBeforeMeasurement += OnBeforeMeasure;
+                mem.OnAfterMeasurement += OnMeasureCompleted;
 
                 light.OnBeforeMeasurement += OnBeforeMeasure;
                 light.OnAfterMeasurement += OnMeasureCompleted;
