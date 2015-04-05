@@ -5,6 +5,8 @@ using Raspberry.IO.Components.Converters.Mcp3002;
 using Raspberry.IO.GeneralPurpose;
 using Raspberry.IO.InterIntegratedCircuit;
 using System;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 
 namespace MakerDenMono {
@@ -21,17 +23,19 @@ namespace MakerDenMono {
         const ConnectorPin sclPin = ConnectorPin.P1Pin05;
 
         static MemoryGpioConnectionDriver driver;
-        protected static Mcp3002SpiConnection adcConnection;
+
+        protected static Mcp3002SpiConnection spiConnection;
         protected static I2cDriver i2cDriver;
         protected static IGpioConnectionDriver gpioDriver;
 
-
+        // Comms layet
         static public ServiceManager sm;
+
         static public LedDigital led;
 
         static protected void InitializeDrivers() {
             driver = new MemoryGpioConnectionDriver();
-            adcConnection = new Mcp3002SpiConnection(driver.Out(adcClock), driver.Out(adcCs), driver.In(adcMiso), driver.Out(adcMosi));
+            spiConnection = new Mcp3002SpiConnection(driver.Out(adcClock), driver.Out(adcCs), driver.In(adcMiso), driver.Out(adcMosi));
             i2cDriver = new I2cDriver(sdaPin.ToProcessor(), sclPin.ToProcessor());
             gpioDriver = GpioConnectionSettings.DefaultDriver;
         }
