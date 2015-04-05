@@ -1,7 +1,7 @@
 using System;
 using UnitsNet;
 
-namespace Glovebox.Raspberry.IoT
+namespace Glovebox.RaspberryPi.IO.Sensors
 {
 	internal static class Convert
 	{

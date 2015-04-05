@@ -1,11 +1,12 @@
 ﻿#region References
 
+using Raspberry.IO;
 using System;
 using UnitsNet;
 
 #endregion
 
-namespace Raspberry.IO.Components.Sensors
+namespace Glovebox.RaspberryPi.IO.Drivers
 {
     /// <summary>
     /// Represents a connection to an analog value coming from a resistive voltage divider

@@ -1,9 +1,9 @@
 ﻿using Glovebox.IoT.Base;
+using Glovebox.RaspberryPi.IO.Drivers;
 using Raspberry.IO.Components.Converters.Mcp3002;
-using Raspberry.IO.Components.Sensors.Sound.Electret;
 
 
-namespace Glovebox.Raspberry.IoT.Sensors
+namespace Glovebox.RaspberryPi.IO.Sensors
 {
 	public class SensorSound : SensorBase
 	{

@@ -4,7 +4,7 @@ using Raspberry.IO.Components.Converters.Mcp3002;
 using Raspberry.IO.GeneralPurpose;
 using Glovebox.IoT.Base;
 
-namespace Glovebox.RaspberryPi
+namespace Glovebox.RaspberryPi.IO.Sensors
 {
 	public class SensorTmp36 : SensorBase
 	{

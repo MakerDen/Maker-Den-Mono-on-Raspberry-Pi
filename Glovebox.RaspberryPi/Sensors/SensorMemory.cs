@@ -2,7 +2,7 @@ using Glovebox.IoT.Base;
 using System;
 using System.Diagnostics;
 
-namespace Glovebox.MicroFramework.Sensors {
+namespace Glovebox.RaspberryPi.IO.Sensors {
     public class SensorMemory : SensorBase {
 
 		Random rnd = new Random();

@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 
 
-namespace Glovebox.Netduino.Actuators {
+namespace Glovebox.RaspberryPi.IO.Actuators {
     public class LedDigital : ActuatorBase {
 
         ConnectorPin userPin = ConnectorPin.P1Pin33;

@@ -55,10 +55,8 @@
     <Compile Include="Drivers\VariableResistiveDividerConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sensors\Helpers\Convert.cs" />
-    <Compile Include="Sensors\Challenge.cs" />
     <Compile Include="Drivers\Mcp9701a\Mcp9701AConnection.cs" />
     <Compile Include="Sensors\SensorCPUTemp.cs" />
-    <Compile Include="Sensors\SensorError.cs" />
     <Compile Include="Sensors\SensorLight.cs" />
     <Compile Include="Sensors\SensorMemory.cs" />
     <Compile Include="Sensors\SensorTemp.cs" />

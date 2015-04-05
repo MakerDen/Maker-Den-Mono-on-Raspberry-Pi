@@ -1,7 +1,7 @@
 using Glovebox.IoT.Base;
 using System.Diagnostics;
 
-namespace Glovebox.Raspberry.IoT
+namespace Glovebox.RaspberryPi.IO.Sensors
 {
 	public class SensorCPUTemp : SensorBase
 	{

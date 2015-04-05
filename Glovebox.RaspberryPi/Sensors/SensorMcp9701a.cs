@@ -2,7 +2,7 @@
 using Glovebox.IoT.Base;
 using Raspberry.IO.Components.Sensors.Temperature.Mcp9701a;
 
-namespace Glovebox.RaspberryPi
+namespace Glovebox.RaspberryPi.IO.Sensors
 {
 	public class SensorMcp9701a : SensorBase
 	{

@@ -1,12 +1,10 @@
 ﻿using Glovebox.IoT;
 using Glovebox.IoT.Base;
-using Glovebox.Netduino.Actuators;
+using Glovebox.RaspberryPi.IO.Actuators;
 using Raspberry.IO.Components.Converters.Mcp3002;
 using Raspberry.IO.GeneralPurpose;
 using Raspberry.IO.InterIntegratedCircuit;
 using System;
-using System.Runtime.CompilerServices;
-using System.Threading;
 
 
 namespace MakerDenMono {

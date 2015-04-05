@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Glovebox.RaspberryPi.Actuators {
+namespace Glovebox.RaspberryPi.IO.Actuators {
     public class Sys : ActuatorBase {
 
         ProcessStartInfo info = new ProcessStartInfo();

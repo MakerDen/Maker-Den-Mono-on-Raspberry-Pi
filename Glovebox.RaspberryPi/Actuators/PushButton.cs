@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 
-namespace Glovebox.RaspberryPi.Actuators.PushButton {
+namespace Glovebox.RaspberryPi.IO.Actuators {
     public class PushButton : IDisposable {
 
         ProcessStartInfo info = new ProcessStartInfo();

@@ -1,7 +1,7 @@
-﻿using System;
-using UnitsNet;
+﻿using Raspberry.IO;
+using System;
 
-namespace Raspberry.IO.Components.Sensors.Sound.Electret
+namespace Glovebox.RaspberryPi.IO.Drivers
 {
 	/// <summary>
 	/// Represents a connection to a TMP36 temperature sensor.

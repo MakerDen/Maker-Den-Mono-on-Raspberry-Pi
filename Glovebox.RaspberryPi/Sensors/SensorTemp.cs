@@ -4,7 +4,7 @@ using Raspberry.IO.GeneralPurpose;
 using Raspberry.IO.Components.Converters.Pcf8591T;
 
 
-namespace Glovebox.Raspberry.IoT
+namespace Glovebox.RaspberryPi.IO.Sensors
 {
 	public class SensorTemp : SensorBase
 	{

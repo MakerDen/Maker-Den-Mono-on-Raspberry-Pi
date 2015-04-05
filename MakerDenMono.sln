@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakerDenMono", "MakerDenMon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glovebox.IoT", "Glovebox.IoT\Glovebox.IoT.csproj", "{02A94E75-998C-4FFD-A8ED-47370163CB0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glovebox.RaspberryPi", "Glovebox.RaspberryPi\Glovebox.RaspberryPi.csproj", "{252C730B-A037-41A5-9F62-D0B57A50C4E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glovebox.RaspberryPi.IO", "Glovebox.RaspberryPi\Glovebox.RaspberryPi.IO.csproj", "{252C730B-A037-41A5-9F62-D0B57A50C4E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4930DC00-6B0F-4398-AA24-8F38A605F0FA}"
 	ProjectSection(SolutionItems) = preProject

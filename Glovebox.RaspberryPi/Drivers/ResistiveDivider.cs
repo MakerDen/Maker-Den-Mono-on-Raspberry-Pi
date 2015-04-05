@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Raspberry.IO;
+using System;
 using UnitsNet;
 
-namespace Raspberry.IO.Components.Sensors
+namespace Glovebox.RaspberryPi.IO.Drivers
 {
     public static class ResistiveDivider
     {
