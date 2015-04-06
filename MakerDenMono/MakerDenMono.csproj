@@ -82,8 +82,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lab Code\Internet of Things Maker Den.jpg" />
-    <Content Include="Lab Code\IoTDashboard.JPG" />
+    <Content Include="Lab Code\Assets\Component Complete.JPG" />
+    <Content Include="Lab Code\Assets\Component Layout.JPG" />
+    <Content Include="Lab Code\Assets\Internet of Things Maker Den.jpg" />
+    <Content Include="Lab Code\Assets\IoTDashboard.JPG" />
     <Content Include="Lab Code\Lab 1.txt" />
   </ItemGroup>
   <PropertyGroup>
