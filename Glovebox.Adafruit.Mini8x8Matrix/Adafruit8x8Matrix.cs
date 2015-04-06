@@ -1,4 +1,4 @@
-﻿using Glovebox.Adafruit.Mini8x8Matrix.Driver;
+﻿using Glovebox.Adafruit.Mini8x8Matrix;
 using Glovebox.IoT.Base;
 using System;
 using System.Threading;
@@ -450,11 +450,7 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
         }
 
         #region Actuator Base Methods
-        protected override void ActuatorCleanup() {
-        }
 
-        public override void Action(IoT.Command.IotAction action) {
-        }
 
         #endregion
 
@@ -477,5 +473,13 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
 
 
 
+
+        protected override void ActuatorCleanup() {
+
+        }
+
+        public override void Action(IoT.Command.IotAction action) {
+
+        }
     }
 }

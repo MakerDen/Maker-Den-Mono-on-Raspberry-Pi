@@ -1,5 +1,4 @@
-﻿using Glovebox.Adafruit.Mini8x8Matrix.Driver;
-using Raspberry.IO.InterIntegratedCircuit;
+﻿using Raspberry.IO.InterIntegratedCircuit;
 using System;
 using System.Threading;
 
