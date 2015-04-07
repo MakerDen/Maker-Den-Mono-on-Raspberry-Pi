@@ -52,6 +52,7 @@ You can install the IoT Dashboard from [here](http://iotmakerdendashboard.azurew
 
 #Prototype Board Layout
 
+
 ##Wiring and Component Layout
 
 ![Wiring and Components](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Assets/Component%20Layout.JPG)
@@ -88,43 +89,105 @@ Optional
 
 ### Declarative Event Driven Model
 
-    using Glovebox.Adafruit.Mini8x8Matrix;
-    using Glovebox.RaspberryPi.IO.Actuators;
-    using Glovebox.RaspberryPi.IO.Sensors;
-    using System.Threading;
+#### Raspbery Pi Bare Bbones without a Prototype Board
 
-    namespace MakerDenMono {
-        class MainClass : MakerBaseIoT {
-            public static void Main(string[] args) {
+No prototype board required.
 
-                InitializeDrivers();
+Connect Ethernet port to router/internet.
 
-                StartNetworkServices("mono", true);
+This example does the following
 
-                using (Sys sys = new Sys("rpi"))
-                using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))
-                using (SensorMemory mem = new SensorMemory(2000, "mem01"))
-                using (led = new LedDigital(gpioDriver, "led01"))
-                using (Relay relay = new Relay(gpioDriver, Raspberry.IO.GeneralPurpose.ProcessorPin.Pin06, "relay01"))
-                using (AdaFruitMatrixRun matrix = new AdaFruitMatrixRun(i2cDriver.Connect(0x70)))
-                using (SensorLight light = new SensorLight(spiConnection, 1000, "light01"))
-                using (SensorMcp9701a tempMcp9701a = new SensorMcp9701a(spiConnection, 15000, "temp02")) {
+1. Start network services and posts sensor data via MQTT to IoT Dashboard
+1. Loads Sys for remote shutdown and reboot via MQTT, 
+2. Reports CPU Temperature, 
+3. Reports .NET Working set memory.  
 
-                    cpuTemp.OnBeforeMeasurement += OnBeforeMeasure;
-                    cpuTemp.OnAfterMeasurement += OnMeasureCompleted;
 
-                    mem.OnBeforeMeasurement += OnBeforeMeasure;
-                    mem.OnAfterMeasurement += OnMeasureCompleted;
+		using Glovebox.Adafruit.Mini8x8Matrix;
+		using Glovebox.RaspberryPi.IO.Actuators;
+		using Glovebox.RaspberryPi.IO.Sensors;
+		using Raspberry.IO.GeneralPurpose;
+		using System.Threading;
 
-                    light.OnBeforeMeasurement += OnBeforeMeasure;
-                    light.OnAfterMeasurement += OnMeasureCompleted;
+		namespace MakerDenMono {
+			class MainClass : MakerBaseIoT {
+				public static void Main(string[] args) {
 
-                    tempMcp9701a.OnBeforeMeasurement += OnBeforeMeasure;
-                    tempMcp9701a.OnAfterMeasurement += OnMeasureCompleted;
+					InitializeDrivers();
 
-                    Thread.Sleep(Timeout.Infinite);
+					StartNetworkServices("mono", true);
+
+					using (Sys sys = new Sys("rpi"))
+					using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))
+					using (SensorMemory mem = new SensorMemory(2000, "mem01")) {
+
+						cpuTemp.OnBeforeMeasurement += OnBeforeMeasure;
+						cpuTemp.OnAfterMeasurement += OnMeasureCompleted;
+
+						mem.OnBeforeMeasurement += OnBeforeMeasure;
+						mem.OnAfterMeasurement += OnMeasureCompleted;
+
+						Thread.Sleep(Timeout.Infinite);
+					}
+				}
+			}
+		}
+
+
+#### Raspberry Pi with Maker Den Configured Prototype Board
+
+Connect Ethernet port to router/internet.
+
+This example does the following
+
+1. Start network services and posts sensor data via MQTT to IoT Dashboard
+1. Loads Sys for remote shutdown and reboot via MQTT, 
+2. Reports CPU Temperature, 
+3. Reports .NET Working set memory.  
+4. Blinks LED for every sensor measurement
+5. Relay support with remote on/off via MQTT
+6. Adafruit Mini LED 8x8 Matrix running test pattern
+7. LDR based light level sensor
+8. Temperature sensor 
+
+        using Glovebox.Adafruit.Mini8x8Matrix;
+        using Glovebox.RaspberryPi.IO.Actuators;
+        using Glovebox.RaspberryPi.IO.Sensors;
+        using Raspberry.IO.GeneralPurpose;
+        using System.Threading;
+
+        namespace MakerDenMono {
+            class MainClass : MakerBaseIoT {
+                public static void Main(string[] args) {
+
+                    InitializeDrivers();
+
+                    StartNetworkServices("mono", true);
+
+                    using (Sys sys = new Sys("rpi"))
+                    using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))
+                    using (SensorMemory mem = new SensorMemory(2000, "mem01"))
+                    using (led = new LedDigital(gpioDriver, ProcessorPin.Pin13, "led01"))
+                    using (Relay relay = new Relay(gpioDriver, ProcessorPin.Pin06, "relay01"))
+                    using (AdaFruitMatrixRun matrix = new AdaFruitMatrixRun(i2cDriver.Connect(0x70)))
+                    using (SensorLight light = new SensorLight(spiConnection, 1000, "light01"))
+                    using (SensorMcp9701a tempMcp9701a = new SensorMcp9701a(spiConnection, 15000, "temp02")) {
+
+                        cpuTemp.OnBeforeMeasurement += OnBeforeMeasure;
+                        cpuTemp.OnAfterMeasurement += OnMeasureCompleted;
+
+                        mem.OnBeforeMeasurement += OnBeforeMeasure;
+                        mem.OnAfterMeasurement += OnMeasureCompleted;
+
+                        light.OnBeforeMeasurement += OnBeforeMeasure;
+                        light.OnAfterMeasurement += OnMeasureCompleted;
+
+                        tempMcp9701a.OnBeforeMeasurement += OnBeforeMeasure;
+                        tempMcp9701a.OnAfterMeasurement += OnMeasureCompleted;
+
+                        Thread.Sleep(Timeout.Infinite);
+                    }
                 }
             }
         }
-    }
 

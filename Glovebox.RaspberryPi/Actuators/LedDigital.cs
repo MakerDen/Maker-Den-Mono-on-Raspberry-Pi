@@ -8,7 +8,6 @@ using System.Threading;
 namespace Glovebox.RaspberryPi.IO.Actuators {
     public class LedDigital : ActuatorBase {
 
-        ConnectorPin userPin = ConnectorPin.P1Pin33;
         ProcessorPin procPin;
         ledState ts = new ledState();
 
@@ -36,10 +35,10 @@ namespace Glovebox.RaspberryPi.IO.Actuators {
         /// </summary>
         /// <param name="pin">From the SecretLabs.NETMF.Hardware.NetduinoPlus.Pins namespace</param>
         /// <param name="name">Unique identifying name for command and control</param>
-        public LedDigital(IGpioConnectionDriver driver, string name)
+        public LedDigital(IGpioConnectionDriver driver, ProcessorPin procPin, string name)
             : base(name, "led") {
 
-            procPin = userPin.ToProcessor();            
+            this.procPin = procPin;            
 
             ts.MyTimer = new Timer(new TimerCallback(BlinkTime_Tick), ts, Timeout.Infinite, Timeout.Infinite);
             
