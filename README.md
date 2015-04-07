@@ -5,7 +5,9 @@ Documentation in progress
 
 Please refer to the [IoT Maker Den on .NET Micro Framework on Netduino documentaion](https://github.com/MakerDen/IoT-Maker-Den-NETMF/blob/master/README.md)
 
-This project can run with or without the configurted Prototype shield.  See the code examples below for running barebones or fully configured Maker Den Prototype shield.
+# Running Maker Den on Raspberry Pi
+
+This project can run with or without the configured prototype shield.  See the code examples below for running barebones or with a fully configured Maker Den prototype shield.
 
 #Setting up Mono on Raspberry Pi
 
