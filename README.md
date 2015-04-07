@@ -5,6 +5,8 @@ Documentation in progress
 
 Please refer to the [IoT Maker Den on .NET Micro Framework on Netduino documentaion](https://github.com/MakerDen/IoT-Maker-Den-NETMF/blob/master/README.md)
 
+This project can run with or without the configurted Prototype shield.  See the code examples below for running barebones or fully configured Maker Den Prototype shield.
+
 #Setting up Mono on Raspberry Pi
 
 More to come, but for now refer to this excellent article of setting up Mono on your Raspberry Pi.[Getting started with the Raspberry Pi 2, for .NET developers](http://j.tlns.be/2015/02/getting-started-with-the-raspberry-pi-2-for-net-developers/)
@@ -89,7 +91,7 @@ Optional
 
 ### Declarative Event Driven Model
 
-#### Raspbery Pi Bare Bbones without a Prototype Board
+#### Raspbery Pi Barebones without a Prototype Board
 
 No prototype board required.
 
