@@ -82,6 +82,7 @@ All parts are generally available worldwide.  This is a peliminary parts list wi
 6. [Rubber Feet - Small Stick On - Pk.4 (or a case)](http://www.jaycar.com.au/PRODUCTS/Enclosures-%26-Panel-Hardware/Panel-Hardware/Equipment-Feet/Rubber-Feet---Small-Stick-On---Pk-4/p/HP0815)
 7. [Adafruit Mini 0.8" 8x8 LED Matrix](http://littlebirdelectronics.com.au/products/adafruit-mini-0-8-8x8-led-matrix-w-i2c-backpack-yellow-green)
 7. 1 x 22k ohm resistor for Light Dependent Resistor
+8. 1 x 200 ohm resistor for the LED
 
 Optional
 
