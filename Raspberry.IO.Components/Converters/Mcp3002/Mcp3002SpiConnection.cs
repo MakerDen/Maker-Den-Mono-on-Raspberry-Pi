@@ -14,7 +14,6 @@ namespace Raspberry.IO.Components.Converters.Mcp3002
     {
         #region Fields
 
-		public object spiLock = new object();
         private readonly SpiConnection spiConnection;
 
         #endregion

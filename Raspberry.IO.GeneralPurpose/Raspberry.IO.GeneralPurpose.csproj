@@ -3,6 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{281C71ED-C36D-408E-8BAA-75C381DC17E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -12,7 +14,6 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Raspberry.System">
-      <HintPath>..\packages\Raspberry.System.1.4.0\lib\net40\Raspberry.System.dll</HintPath>
+      <HintPath>..\packages\Raspberry.System.2.0.0\lib\net40\Raspberry.System.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -84,10 +85,6 @@
     <ProjectReference Include="..\Raspberry.IO.Interop\Raspberry.IO.Interop.csproj">
       <Project>{689CB6C4-3D23-45DA-8E00-87C28AEA32D0}</Project>
       <Name>Raspberry.IO.Interop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Raspberry.IO\Raspberry.IO.csproj">
-      <Project>{ace64f17-87e5-43e7-97a0-bdde19059c61}</Project>
-      <Name>Raspberry.IO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

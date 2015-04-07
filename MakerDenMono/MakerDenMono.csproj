@@ -43,6 +43,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Glovebox.Adafruit.Mini8x8Matrix\Glovebox.Adafruit.Mini8x8Matrix.csproj">
@@ -57,29 +58,33 @@
       <Project>{252c730b-a037-41a5-9f62-d0b57a50c4e6}</Project>
       <Name>Glovebox.RaspberryPi.IO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Raspberry.IO.GeneralPurpose\Raspberry.IO.GeneralPurpose.csproj">
-      <Project>{281c71ed-c36d-408e-8baa-75c381dc17e7}</Project>
-      <Name>Raspberry.IO.GeneralPurpose</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Raspberry.IO.InterIntegratedCircuit\Raspberry.IO.InterIntegratedCircuit.csproj">
       <Project>{63b8403e-bc56-43f9-a045-f61ecc3871f3}</Project>
       <Name>Raspberry.IO.InterIntegratedCircuit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Raspberry.IO.Interop\Raspberry.IO.Interop.csproj">
-      <Project>{689cb6c4-3d23-45da-8e00-87c28aea32d0}</Project>
-      <Name>Raspberry.IO.Interop</Name>
     </ProjectReference>
     <ProjectReference Include="..\Raspberry.IO.SerialPeripheralInterface\Raspberry.IO.SerialPeripheralInterface.csproj">
       <Project>{326342e5-0411-40e8-9f2d-563d6b192568}</Project>
       <Name>Raspberry.IO.SerialPeripheralInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Raspberry.IO\Raspberry.IO.csproj">
-      <Project>{ace64f17-87e5-43e7-97a0-bdde19059c61}</Project>
-      <Name>Raspberry.IO</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Raspberry.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Raspberry.IO.GeneralPurpose.2.2.0.1\lib\net40\Raspberry.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Raspberry.IO.GeneralPurpose, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Raspberry.IO.GeneralPurpose.2.2.0.1\lib\net40\Raspberry.IO.GeneralPurpose.dll</HintPath>
+    </Reference>
+    <Reference Include="Raspberry.IO.Interop, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Raspberry.IO.GeneralPurpose.2.2.0.1\lib\net40\Raspberry.IO.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Raspberry.System">
+      <HintPath>..\packages\Raspberry.System.2.0.0\lib\net40\Raspberry.System.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lab Code\Assets\Component Complete.JPG" />

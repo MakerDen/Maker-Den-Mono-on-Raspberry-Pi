@@ -55,11 +55,6 @@ namespace Raspberry.IO.Components.Sensors
             return resistorEvalFunc(value);
         }
 
-		public uint GetPercentage(){
-			var value = analogPin.Read();
-			return (uint)((1 - value.Relative) * 100);
-		}
-
         /// <summary>
         /// Closes this instance.
         /// </summary>
