@@ -17,7 +17,6 @@ namespace Glovebox.RaspberryPi.IO.Drivers
 		const int averagedOver = 8;
 		const int midpoint = 512;
 		int runningAverage = 0;
-		int sample;
 
 		#endregion
 
