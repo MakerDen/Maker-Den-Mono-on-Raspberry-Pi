@@ -15,7 +15,7 @@ More to come, but for now refer to this excellent article of setting up Mono on 
 The Internet of Things Solution Accelerator for the .NET Micro Framework provides a pluggable foundation to support sensors, actuators, data serialisation, communications, and command and control. 
 
 
-![Alt text](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Internet%20of%20Things%20Maker%20Den.jpg)
+![Alt text](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Assets/Internet%20of%20Things%20Maker%20Den.jpg)
 
 
 
@@ -46,13 +46,19 @@ The Internet of Things Solution Accelerator for the .NET Micro Framework provide
 ## IoT Dashboard
 The IoT Dashboard allows you to visualise the data streamed to Azure. 
 
-![IoT Dashboard](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/IoTDashboard.JPG)
+![IoT Dashboard](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Assets/IoTDashboard.JPG)
 
 You can install the IoT Dashboard from [here](http://iotmakerdendashboard.azurewebsites.net/install/publish.htm).  Note, you will need to allow to run from unknown publisher.
 
 #Prototype Board Layout
 
+##Wiring and Component Layout
 
+![Wiring and Components](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Assets/Component%20Layout.JPG)
+
+## Complete Board
+
+![Complete with components](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Assets/Component%20Complete.JPG)
 
 # Parts List
 All parts are generally available worldwide.  This is a peliminary parts list with links to sites where I purchased the parts for the Maker Den on Mono (.NET) on Raspberry Pi 2 (also supports Raspberry Pi B+).  The links are for your reference only and in no way are these sites affiliated with Microsoft.
