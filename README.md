@@ -58,7 +58,7 @@ You can install the IoT Dashboard from [here](http://iotmakerdendashboard.azurew
 
 ## Complete Board
 
-![Complete with components](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Assets/Component%20Complete.JPG)
+![[Complete with components](https://github.com/MakerDen/IoT-Maker-Den-Mono-.NET-on-Raspberry-Pi-2/blob/master/MakerDenMono/Lab%20Code/Assets/Component%20Complete.JPG)](https://www.youtube.com/embed/krNViqufGW4)
 
 # Parts List
 All parts are generally available worldwide.  This is a peliminary parts list with links to sites where I purchased the parts for the Maker Den on Mono (.NET) on Raspberry Pi 2 (also supports Raspberry Pi B+).  The links are for your reference only and in no way are these sites affiliated with Microsoft.
