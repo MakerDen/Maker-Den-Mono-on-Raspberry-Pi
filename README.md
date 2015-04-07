@@ -27,7 +27,7 @@ The Internet of Things Solution Accelerator for the .NET Micro Framework provide
  * Sensor data serialised to a JSON schema
 
 2. Actuators
- * LED, 
+ * LED, Relay
  * Adafruit Mini 0.8" 8x8 LED Matrix
      - Low and high level pixel frame transformation primitives 
      - alphanumeric character and symbol drawing and scrolling capability 
@@ -99,12 +99,13 @@ Optional
 
                 InitializeDrivers();
 
-                StartNetworkServices("Mono", true);
+                StartNetworkServices("mono", true);
 
-                using (Sys sys = new Sys("dgrpi2"))
+                using (Sys sys = new Sys("rpi"))
                 using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))
                 using (SensorMemory mem = new SensorMemory(2000, "mem01"))
                 using (led = new LedDigital(gpioDriver, "led01"))
+                using (Relay relay = new Relay(gpioDriver, Raspberry.IO.GeneralPurpose.ProcessorPin.Pin06, "relay01"))
                 using (AdaFruitMatrixRun matrix = new AdaFruitMatrixRun(i2cDriver.Connect(0x70)))
                 using (SensorLight light = new SensorLight(spiConnection, 1000, "light01"))
                 using (SensorMcp9701a tempMcp9701a = new SensorMcp9701a(spiConnection, 15000, "temp02")) {
@@ -126,3 +127,4 @@ Optional
             }
         }
     }
+
