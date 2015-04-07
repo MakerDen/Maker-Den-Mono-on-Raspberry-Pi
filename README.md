@@ -94,11 +94,10 @@ Optional
 
 ### Declarative Event Driven Model
 
-#### Raspbery Pi Barebones without a Prototype Board
+#### Raspbery Pi Barebones without the Maker Den Prototype Board
 
-No prototype board required.
 
-Connect Ethernet port to router/internet.
+**Connect Ethernet port to router/internet.**
 
 This example does the following
 
@@ -141,7 +140,7 @@ This example does the following
 
 #### Raspberry Pi with Maker Den Configured Prototype Board
 
-Connect Ethernet port to router/internet.
+**Connect Ethernet port to router/internet.**
 
 This example does the following
 
@@ -169,12 +168,12 @@ This example does the following
 
                     StartNetworkServices("mono", true);
 
-                    using (Sys sys = new Sys("rpi"))
+                    using (Sys sys = new Sys("system"))
                     using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))
                     using (SensorMemory mem = new SensorMemory(2000, "mem01"))
                     using (led = new LedDigital(gpioDriver, ProcessorPin.Pin13, "led01"))
                     using (Relay relay = new Relay(gpioDriver, ProcessorPin.Pin06, "relay01"))
-                    using (AdaFruitMatrixRun matrix = new AdaFruitMatrixRun(i2cDriver.Connect(0x70)))
+                    using (AdaFruitMatrixRun matrix = new AdaFruitMatrixRun(i2cDriver.Connect(0x70), "matrix01"))
                     using (SensorLight light = new SensorLight(spiConnection, 1000, "light01"))
                     using (SensorMcp9701a tempMcp9701a = new SensorMcp9701a(spiConnection, 15000, "temp02")) {
 
@@ -195,4 +194,5 @@ This example does the following
                 }
             }
         }
+
 

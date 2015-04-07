@@ -61,7 +61,7 @@ namespace Glovebox.RaspberryPi.IO.Actuators {
 
         public void Shutdown() {
             info.FileName = "sudo";
-            info.Arguments = "shutdown now -h";
+            info.Arguments = "halt";
             Process.Start(info);
         }
 
