@@ -13,7 +13,7 @@ namespace Glovebox.RaspberryPi.IO.Actuators {
         ProcessStartInfo info = new ProcessStartInfo();
 
         public enum Actions {
-            Shutdown,
+            Halt,
             Reboot
         }
 
@@ -37,8 +37,8 @@ namespace Glovebox.RaspberryPi.IO.Actuators {
 
         public void Action(Actions action) {
             switch (action) {
-                case Actions.Shutdown:
-                    Shutdown();
+                case Actions.Halt:
+                    Halt();
                     break;
                 case Actions.Reboot:
                     Reboot();
@@ -50,8 +50,8 @@ namespace Glovebox.RaspberryPi.IO.Actuators {
 
         public override void Action(IotAction action) {
             switch (action.cmd) {
-                case "shutdown":
-                    Shutdown();
+                case "halt":
+                    Halt();
                     break;
                 case "reboot":
                     Reboot();
@@ -59,7 +59,7 @@ namespace Glovebox.RaspberryPi.IO.Actuators {
             }
         }
 
-        public void Shutdown() {
+        public void Halt() {
             info.FileName = "sudo";
             info.Arguments = "halt";
             Process.Start(info);

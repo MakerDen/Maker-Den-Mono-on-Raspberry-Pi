@@ -413,11 +413,8 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
         /// </summary>
         /// <param name="rowIndex"></param>
         public void ColumnShiftLeft(ushort rowIndex) {
-            //      Console.WriteLine(rowIndex.ToString());
             int b = rowIndex * 2 + 1;
-            //       for (int b = 1; b < bufferSize; b += 2) {
             Frame[b] = (byte)((Frame[b] >> 1 | Frame[b] << 7) & 0xbf);
-            // }
         }
 
         /// <summary>
@@ -426,10 +423,7 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
         /// <param name="rowIndex"></param>
         public void ColumnShiftRight(ushort rowIndex) {
             int b = rowIndex * 2 + 1;
-
-            //    for (int b = 1; b < bufferSize; b += 2) {
             Frame[b] = (byte)((Frame[b] << 1 | Frame[b] >> 7) & 0x7f);
-            //  }
         }
 
         public void RowRollUp() {
@@ -462,16 +456,12 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
 
         public void ColumnRollRight(ushort rowIndex) {
             int b = rowIndex * 2 + 1;
-            //    for (int b = 1; b < bufferSize; b += 2) {
             Frame[b] = (byte)(Frame[b] << 1 | Frame[b] >> 7);
-            //     }
         }
 
         public void ColumnRollLeft(ushort rowIndex) {
             int b = rowIndex * 2 + 1;
-            //  for (int b = 1; b < bufferSize; b += 2) {
             Frame[b] = (byte)(Frame[b] >> 1 | Frame[b] << 7);
-            //  }
         }
 
         #region Actuator Base Methods
@@ -516,7 +506,6 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
 
                 var a = GetNextAction();
                 while (a != null) {
-                    System.Console.WriteLine(a.item);
                     DoAction(a);
                     a = GetNextAction();
                 }
@@ -539,7 +528,6 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
         }
 
         public override void Action(IoT.Command.IotAction action) {
-            System.Console.WriteLine("Action");
             // cap the queue to prevent flooding attack
 
             if (actionQueue.Count > 50) { return; }

@@ -12,7 +12,7 @@ namespace MakerDenMono {
 
             StartNetworkServices("Mono", true);
 
-            using (Sys sys = new Sys("system"))
+            using (Sys sys = new Sys("rpi"))
             using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))
             using (SensorMemory mem = new SensorMemory(2000, "mem01"))
             using (led = new LedDigital(gpioDriver, ProcessorPin.Pin13, "led01"))
