@@ -3,31 +3,24 @@ using System;
 using System.Threading;
 
 namespace Glovebox.Adafruit.Mini8x8Matrix {
-    public class AdaFruitMatrixRun : Adafruit8x8Matrix, IDisposable {
-        #region IDisposable implementation
+    public class AdaFruitMatrixRun : Adafruit8x8Matrix {
 
-        void IDisposable.Dispose() {
-
-        }
-
-        #endregion
-
-        Thread matrix;
+        Thread matrixThread;
 
         public AdaFruitMatrixRun(I2cDeviceConnection connection, string name)
             : base(new Ht16K33I2cConnection(connection), name) {
 
             CreateCyclesCollection();
 
-            matrix = new Thread(new ThreadStart(this.RunSequence));
-            matrix.Start();
+            matrixThread = new Thread(new ThreadStart(this.RunSequence));
+            matrixThread.Start();
         }
 
 
         private void CreateCyclesCollection() {
             cycles = new DoCycle[] {
 
-            new DoCycle(HappyBirthday),
+          //  new DoCycle(HappyBirthday),
             new DoCycle(AlphaNumeric),
             new DoCycle(ShowSymbols),
             new DoCycle(Hearts),
@@ -36,15 +29,15 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
         }
 
         private void HappyBirthday() {
-            ScrollStringInFromRight("Happy Birthday", 100);
-            ScrollSymbolInFromRight(new Symbols[] { Symbols.Heart, Symbols.Heart }, 100);
+            ScrollStringInFromRight("Happy Birthday", 50);
+            ScrollSymbolInFromRight(new Symbols[] { Symbols.Heart, Symbols.Heart }, 50);
         }
 
         private void AlphaNumeric() {
             for (int i = 0; i < fontSimple.Length; i++) {
                 DrawBitmap(fontSimple[i]);
                 FrameDraw();
-                Thread.Sleep(100);
+                Thread.Sleep(50);
             }
         }
 

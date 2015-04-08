@@ -2,18 +2,29 @@
 using Glovebox.IoT.Base;
 using Glovebox.IoT.Command;
 using System;
+using System.Collections;
 using System.Threading;
 
 namespace Glovebox.Adafruit.Mini8x8Matrix {
-    public class Adafruit8x8Matrix : AdafruitMatrixAction {
+
+    public delegate void DoCycle();
+
+    public class Adafruit8x8Matrix : ActuatorBase {
+        public DoCycle[] cycles;
+        Queue actionQueue = new Queue();
+
 
         const uint bufferSize = 17;
         private byte[] Frame = new byte[bufferSize];
 
-        protected const ushort Rows = 8;
-        protected const ushort Columns = 8;
-        public readonly ushort Panels = 1;
-        protected ushort Length = Rows * Columns;
+        //   protected const ushort Rows = 8;
+        //   protected const ushort Columns = 8;
+        protected readonly ushort Panels = 1;
+        protected readonly ushort Length;
+
+        public ushort Columns { get; set; }
+        public ushort Rows { get; set; }
+
 
         Ht16K33I2cConnection i2Cdriver;
 
@@ -139,7 +150,12 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
         #endregion
 
         public Adafruit8x8Matrix(Ht16K33I2cConnection i2Cdriver, string name, ushort panels = 1)
-            : base(name) {
+            : base(name, "matrix") {
+
+            this.Columns = 8;
+            this.Rows = 8;
+            this.Length = (ushort)(Columns * Rows);
+
             this.Panels = panels;
             this.i2Cdriver = i2Cdriver;
         }
@@ -301,6 +317,14 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
             }
         }
 
+        public void DrawFontSet(int milliseconds) {
+            for (int c = 0; c < fontSimple.Length; c++) {
+                DrawBitmap(fontSimple[c]);
+                FrameDraw();
+                Thread.Sleep(milliseconds);
+            }
+        }
+
         public void DrawLetter(char character, ushort panel = 0) {
             ulong letter = 0;
 
@@ -352,7 +376,7 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
             return (byte)(b >> 1 | (b << 7));
         }
 
-        protected void FrameSet(int position, bool state) {
+        public void FrameSet(int position, bool state) {
             position = (int)(Math.Abs(position) % (Columns * Rows));
 
             ushort row = (ushort)(position / Columns);
@@ -458,13 +482,13 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
 
         #region command support
 
-        protected override void DoAction(IotAction action) {
-            switch (action.cmd) {
-                case "text":
-                    ScrollStringInFromRight(action.parameters, 100);
-                    break;
-            }
-        }
+        //protected override void DoAction(IotAction action) {
+        //    switch (action.cmd) {
+        //        case "text":
+        //            ScrollStringInFromRight(action.parameters, 100);
+        //            break;
+        //    }
+        //}
 
         #endregion
 
@@ -484,16 +508,55 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
 
         #endregion
 
+        #region Commanding
 
+        public void ExecuteCycle(DoCycle doCycle) {
+            try {
+                doCycle();
 
+                var a = GetNextAction();
+                while (a != null) {
+                    System.Console.WriteLine(a.item);
+                    DoAction(a);
+                    a = GetNextAction();
+                }
+            }
+            catch { ActuatorErrorCount++; }
+        }
+
+        private void DoAction(IotAction a) {
+           switch (a.cmd){
+               case "text":
+                   if (a.parameters != null && a.parameters != string.Empty) {
+                       ScrollStringInFromRight(a.parameters, 100);                   
+                   }
+               break;
+           }
+        }
 
         protected override void ActuatorCleanup() {
 
         }
 
         public override void Action(IoT.Command.IotAction action) {
+            System.Console.WriteLine("Action");
+            // cap the queue to prevent flooding attack
 
+            if (actionQueue.Count > 50) { return; }
+            actionQueue.Enqueue((object)action);
         }
 
+        public IotAction GetNextAction() {
+            if (actionQueue.Count > 0) {
+                return (IotAction)(actionQueue.Dequeue());
+            }
+            else { return null; }
+        }
+
+        public void ClearActionQueue() {
+            actionQueue.Clear();
+        }
+
+        #endregion
     }
 }

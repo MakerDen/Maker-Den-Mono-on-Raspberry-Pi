@@ -3,6 +3,7 @@ using System.Net.NetworkInformation;
 using System.Net;
 using System.Threading;
 using System.Text;
+using System.Net.Sockets;
 
 
 
@@ -93,6 +94,18 @@ namespace Glovebox.IoT {
             // get absolute value bit shifting a 32 bit int
             int mask = value >> 31;
             return (mask + value) ^ mask;
+        }
+
+        public static string GetIPAddress() {
+            IPHostEntry host;
+            string localIP = "?";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList) {
+                if (ip.AddressFamily == AddressFamily.InterNetwork) {
+                    localIP = ip.ToString();
+                }
+            }
+            return localIP;
         }
     }
 }
