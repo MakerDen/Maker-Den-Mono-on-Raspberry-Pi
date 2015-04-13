@@ -10,7 +10,7 @@ namespace MakerDenMono {
 
             InitializeDrivers();
 
-            StartNetworkServices("rpi2", true, "LIU5777596");
+            StartNetworkServices("Mono", true, "dgrpi2");
 
             using (Sys sys = new Sys("system"))
             using (SensorCPUTemp cpuTemp = new SensorCPUTemp(10000, "cpu01"))

@@ -49,6 +49,7 @@ namespace Glovebox.RaspberryPi.IO.Actuators {
         }
 
         public override void Action(IotAction action) {
+            if (action.all) { return; }
             switch (action.cmd) {
                 case "halt":
                     Halt();

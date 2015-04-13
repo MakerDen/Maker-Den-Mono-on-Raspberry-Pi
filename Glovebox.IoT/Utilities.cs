@@ -58,12 +58,12 @@ namespace Glovebox.IoT {
         /// Starts the network services.
         /// </summary>
         /// <returns>The network services.</returns>
-        /// <param name="deviceName">Device name.</param>
+        /// <param name="deviceId">Device name.</param>
         /// <param name="connected">If set to <c>true</c> connected.</param>
-        /// <param name="deviceGuid">Device GUID.</param>
-        static public ServiceManager StartNetworkServices(string deviceName, bool connected, string deviceGuid) {
-            ConfigurationManager.DeviceName = deviceName;
-            ConfigurationManager.UniqueDeviceIdentifier = deviceGuid;
+        /// <param name="networkId">Device GUID.</param>
+        static public ServiceManager StartNetworkServices(string deviceId, bool connected, string networkId) {
+            ConfigurationManager.DeviceId = deviceId;
+            ConfigurationManager.NetworkId = networkId;
             if (!connected) { return null; }
             return new ServiceManager(ConfigurationManager.Broker, connected);
         }

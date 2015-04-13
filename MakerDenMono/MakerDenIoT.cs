@@ -40,8 +40,8 @@ namespace MakerDenMono {
             gpioDriver = GpioConnectionSettings.DefaultDriver;
         }
 
-        protected static void StartNetworkServices(string deviceName, bool connected, string uniqueDeviceIdentifier = "") {
-            sm = Utilities.StartNetworkServices(deviceName, connected, uniqueDeviceIdentifier);
+        protected static void StartNetworkServices(string deviceId, bool connected, string networkId = "") {
+            sm = Utilities.StartNetworkServices(deviceId, connected, networkId);
         }
 
         /// <summary>

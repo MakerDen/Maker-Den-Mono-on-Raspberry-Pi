@@ -23,7 +23,7 @@ namespace Glovebox.IoT
         readonly string clientId;
         uint mqttPrePublishDelay;
         uint mqttPostPublishDelay;
-        readonly string uniqueDeviceIdentifier;
+        readonly string NetworkId;
         int lastSystemrequest = Environment.TickCount;
         DateTime lastSystemRequestTime = DateTime.Now;
 
@@ -35,7 +35,7 @@ namespace Glovebox.IoT
             this.clientId = CreateClientId();
             this.mqttPrePublishDelay = ConfigurationManager.mqttPrePublishDelay;
             this.mqttPostPublishDelay = ConfigurationManager.mqttPostPublishDelay;
-            this.uniqueDeviceIdentifier = GetUniqueDeviceIdentifier(ConfigurationManager.UniqueDeviceIdentifier);
+            this.NetworkId = GetUniqueDeviceIdentifier(ConfigurationManager.NetworkId);
 
 
             if (!connected) { return; }
@@ -135,7 +135,7 @@ namespace Glovebox.IoT
             string[] result = IotActionManager.Action(actionRequest);
             if (result != null)
             {
-                Publish(ConfigurationManager.MqttDeviceAnnounce + ConfigurationManager.DeviceName, SystemConfig(result));
+                Publish(ConfigurationManager.MqttDeviceAnnounce + ConfigurationManager.DeviceId, SystemConfig(result));
             }
         }
 
@@ -143,8 +143,8 @@ namespace Glovebox.IoT
         {
             JSONWriter jw = new JSONWriter();
             jw.Begin();
-            jw.AddProperty("Dev", ConfigurationManager.DeviceName);
-            jw.AddProperty("Id", uniqueDeviceIdentifier);
+            jw.AddProperty("Dev", ConfigurationManager.DeviceId);
+            jw.AddProperty("Id", NetworkId);
             jw.AddProperty("Items", IotItems);
             jw.End();
 
@@ -160,22 +160,23 @@ namespace Glovebox.IoT
             switch (topic.Substring(0, 9))
             {
                 case "gbcmd/all":
-                    return ActionParts(topicParts, 2, message);
+                    return ActionParts(topicParts, 2, message, true);
                 case "gbcmd/dev":
                     // check device guid matches requested
-                    if (topicParts.Length > 2 && topicParts[2] != string.Empty && topicParts[2] != null && topicParts[2] == uniqueDeviceIdentifier.ToLower())
+                    if (topicParts.Length > 2 && topicParts[2] != string.Empty && topicParts[2] != null && topicParts[2] == NetworkId.ToLower())
                     {
-                        return ActionParts(topicParts, 3, message);
+                        return ActionParts(topicParts, 3, message, false);
                     }
                     else { return null; }
             }
             return null;
         }
 
-        private IotAction ActionParts(string[] topicParts, int startPos, string message)
+        private IotAction ActionParts(string[] topicParts, int startPos, string message, bool thisDevice)
         {
             IotAction action = new IotAction();
             action.parameters = message;
+            action.all = thisDevice;
 
             for (int i = startPos, p = 0; i < topicParts.Length; i++, p++)
             {

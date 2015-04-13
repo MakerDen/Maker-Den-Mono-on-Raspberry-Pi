@@ -4,5 +4,6 @@ namespace Glovebox.IoT.Command {
         public string item;  //eg rgb01
         public string subItem; // red
         public string parameters;  // eg rate duration, json string for neopixel
+        public bool all = false;
     }
 }
