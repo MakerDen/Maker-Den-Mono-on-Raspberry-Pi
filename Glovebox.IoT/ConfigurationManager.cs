@@ -20,7 +20,7 @@ namespace Glovebox.IoT {
         public static string[] MqqtSubscribe = new string[] { "gbcmd/#" };
         public static string MqttDeviceAnnounce = "gbdevice/";
 
-        public static uint mqttPrePublishDelay = 250;  // milliseconds delay before mqtt publish
-        public static uint mqttPostPublishDelay = 200; // milliseconds delay after mqtt publish
+        public static uint mqttPrePublishDelay = 0;  // milliseconds delay before mqtt publish
+        public static uint mqttPostPublishDelay = 0; // milliseconds delay after mqtt publish
     }
 }
