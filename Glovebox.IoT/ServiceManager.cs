@@ -176,7 +176,7 @@ namespace Glovebox.IoT
         {
             IotAction action = new IotAction();
             action.parameters = message;
-            action.all = thisDevice;
+            action.identified = thisDevice;
 
             for (int i = startPos, p = 0; i < topicParts.Length; i++, p++)
             {

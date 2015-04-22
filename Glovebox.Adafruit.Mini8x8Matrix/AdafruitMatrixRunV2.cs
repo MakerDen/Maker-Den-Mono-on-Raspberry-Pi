@@ -32,6 +32,7 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
 
         private void MyIPAddress() {
             matrix.ScrollStringInFromRight("IP: " + Utilities.GetIPAddress(), 100);
+            Thread.Sleep(200);
         }
 
         private void HappyBirthday() {

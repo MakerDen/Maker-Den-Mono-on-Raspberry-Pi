@@ -1,1 +1,1 @@
-xcopy %1*.* "\\192.168.1.7\Mono\makerden" /s /e /y /d
+xcopy %1*.* "\\192.168.1.14\Mono\makerden" /s /e /y /d

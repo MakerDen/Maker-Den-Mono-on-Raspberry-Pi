@@ -50,6 +50,10 @@
       <Project>{b32f7e0e-b4df-4641-9608-ce00ff3dbf1e}</Project>
       <Name>Glovebox.Adafruit.Mini8x8Matrix</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Glovebox.ExplorerHat\Glovebox.ExplorerHat.csproj">
+      <Project>{5f9523d0-1fdf-47f4-bdc6-83d602c7e1cd}</Project>
+      <Name>Glovebox.ExplorerHat</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Glovebox.IoT\Glovebox.IoT.csproj">
       <Project>{02a94e75-998c-4ffd-a8ed-47370163cb0f}</Project>
       <Name>Glovebox.IoT</Name>

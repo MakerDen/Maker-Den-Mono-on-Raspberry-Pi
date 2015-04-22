@@ -144,7 +144,6 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
             DownArrow = 0x183C7EFF18181818,
             RightArrow = 0x103070FFFF703010,
             LeftArrow = 0x080C0EFFFF0E0C08,
-
         }
 
         #endregion

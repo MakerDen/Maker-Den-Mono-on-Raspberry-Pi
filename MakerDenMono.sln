@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raspberry.IO.InterIntegrate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raspberry.IO.SerialPeripheralInterface", "Raspberry.IO.SerialPeripheralInterface\Raspberry.IO.SerialPeripheralInterface.csproj", "{326342E5-0411-40E8-9F2D-563D6B192568}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glovebox.ExplorerHat", "Glovebox.ExplorerHat\Glovebox.ExplorerHat.csproj", "{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,16 @@ Global
 		{326342E5-0411-40E8-9F2D-563D6B192568}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{326342E5-0411-40E8-9F2D-563D6B192568}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{326342E5-0411-40E8-9F2D-563D6B192568}.Release|x86.ActiveCfg = Release|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5F9523D0-1FDF-47F4-BDC6-83D602C7E1CD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

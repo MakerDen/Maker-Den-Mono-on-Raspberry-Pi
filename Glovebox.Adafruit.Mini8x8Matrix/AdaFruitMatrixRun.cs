@@ -45,7 +45,7 @@ namespace Glovebox.Adafruit.Mini8x8Matrix {
             foreach (Symbols suit in Enum.GetValues(typeof(Symbols))) {
                 DrawSymbol(suit);
                 FrameDraw();
-                Thread.Sleep(250);
+                Thread.Sleep(1000);
             }
         }
 
