@@ -21,7 +21,7 @@ namespace Glovebox.RaspberryPi.IO.Actuators {
  
 
             driver.Allocate(procPin, PinDirection.Input);
-            driver.SetPinDetectedEdges(procPin, PinDetectedEdges.Both);
+            driver.SetPinDetectedEdges(procPin, PinDetectedEdges.Rising);
             driver.SetPinResistor(procPin, PinResistor.PullDown);
 
             info.FileName = "sudo";

@@ -78,12 +78,17 @@
     <Compile Include="Sensors\SensorLight.cs" />
     <Compile Include="Sensors\SensorMemory.cs" />
     <Compile Include="Sensors\SensorTemp.cs" />
+    <Compile Include="Sensors\SensorTempI2C.cs" />
     <Compile Include="Sensors\SensorTmp36.cs" />
     <Compile Include="Sensors\SensorSound.cs" />
     <Compile Include="Sensors\SensorMcp9701a.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\Glovebox.ExplorerHat\Glovebox.ExplorerHat.csproj">
+      <Project>{5f9523d0-1fdf-47f4-bdc6-83d602c7e1cd}</Project>
+      <Name>Glovebox.ExplorerHat</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Glovebox.IoT\Glovebox.IoT.csproj">
       <Project>{02A94E75-998C-4FFD-A8ED-47370163CB0F}</Project>
       <Name>Glovebox.IoT</Name>

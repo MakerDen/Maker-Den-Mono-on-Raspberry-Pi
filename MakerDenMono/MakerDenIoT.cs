@@ -37,7 +37,7 @@ namespace MakerDenMono {
             driver = new MemoryGpioConnectionDriver();
             spiConnection = new Mcp3002SpiConnection(driver.Out(adcClock), driver.Out(adcCs), driver.In(adcMiso), driver.Out(adcMosi));
             i2cDriver = new I2cDriver(sdaPin.ToProcessor(), sclPin.ToProcessor());
-            gpioDriver = GpioConnectionSettings.DefaultDriver;
+            gpioDriver = GpioConnectionSettings.GetBestDriver(GpioConnectionDriverCapabilities.CanChangePinDirectionRapidly);
         }
 
         protected static void StartNetworkServices(string deviceId, bool connected, string networkId = "") {
